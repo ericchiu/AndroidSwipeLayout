@@ -205,7 +205,7 @@ public class SwipeItemMangerImpl implements SwipeItemMangerInterface {
         }
 
         @Override
-        public void onOpen(SwipeLayout layout) {
+        public void onOpen(SwipeLayout layout, boolean left) {
             if (mode == Mode.Multiple)
                 mOpenPositions.add(position);
             else {

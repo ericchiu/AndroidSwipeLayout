@@ -39,6 +39,8 @@ public class SwipeLayout extends FrameLayout {
 
     private boolean mSwipeEnabled = true;
 
+    private int mPosition;
+
     public static enum DragEdge {
         Left,
         Right,
@@ -76,7 +78,7 @@ public class SwipeLayout extends FrameLayout {
     public interface SwipeListener {
         public void onStartOpen(SwipeLayout layout);
 
-        public void onOpen(SwipeLayout layout);
+        public void onOpen(SwipeLayout layout, boolean left);
 
         public void onStartClose(SwipeLayout layout);
 
@@ -491,6 +493,7 @@ public class SwipeLayout extends FrameLayout {
                         l.onStartClose(this);
                     }
                 }
+                mPosition = surfaceLeft - getPaddingLeft();
                 l.onUpdate(SwipeLayout.this, surfaceLeft - getPaddingLeft(), surfaceTop - getPaddingTop());
             }
 
@@ -504,7 +507,7 @@ public class SwipeLayout extends FrameLayout {
             if (status == Status.Open) {
                 getBottomView().setEnabled(true);
                 for (SwipeListener l : mSwipeListeners) {
-                    l.onOpen(SwipeLayout.this);
+                    l.onOpen(SwipeLayout.this, mPosition < 0);
                 }
                 mEventCounter = 0;
             }

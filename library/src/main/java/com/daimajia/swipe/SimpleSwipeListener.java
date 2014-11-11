@@ -7,7 +7,7 @@ public class SimpleSwipeListener implements SwipeLayout.SwipeListener {
     }
 
     @Override
-    public void onOpen(SwipeLayout layout) {
+    public void onOpen(SwipeLayout layout, boolean left) {
     }
 
     @Override
